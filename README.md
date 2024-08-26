@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## Getting Started
 
-First, run the development server:
+1. Install Node.js
+
+- Ensure that Node.js is installed on your machine. You can verify the installation by running:
+
+  ```bash
+  node -v
+  ```
+
+- If Node.js is not installed, follow the instructions on the [Node.js](https://nodejs.org/en) website to download and install the latest version.
+
+2. Run the development server
+
+   ```bash
+   npx next dev
+   ```
+
+   Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+3. Live Demo
+
+   Visit [SIN Validator](https://xia0m.github.io/sin-validator/) for a Live Demo.
+
+## Run Test Locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm test
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Assumption
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Input Format
+   - The Social Insurance Number (SIN) will be formated as XXX XXX XXX and only digits are accepted
+   - SIN consists of exactly 9 digits
+2. Validation
+   - The validation follows the Luhn Algorithm
+   - Only frontend validation is provided, there is no backend involved
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Approach and Logic
 
-## Learn More
+1. Project Setup
+   - Create a Next.js app with Typescript, Tailwind CSS, Daisy UI for styling
+2. UI Design
+   - Added a Card that contains text input and 'Validation' Button
+   - Enhanced the input field to automatically format the input as XXX XXX XXX, ensuring that only numeric input is accepted.
+3. Asynchronous Validation
 
-To learn more about Next.js, take a look at the following resources:
+   - Implemented logic to validate the SIN input upon clicking the 'Validate' button, including a length check and Luhn Algorithm verification.
+   - Refactored the validation logic into a promise, allowing the UI to reflect 'Success', 'Error', and 'Pending' states based on the validation result.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+4. User Feedback with Icons
+   - If isValidating is true, the loading spinner (LoadingIcon) is shown.
+   - If isValid is true, the success icon (SuccessIcon) is displayed along with the success message.
+   - If isValid is false, the error icon (ErrorIcon) is displayed along with the error message.
+5. Unit Testing
+   - Added Vitest unit tests to ensure the reliability of the validation logic and UI components.
+6. CI/CD
+   - Configured GitHub Actions to automatically run tests and deploy the application to GitHub Pages.
