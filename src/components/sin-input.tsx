@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { validateSIN } from '@/utils/validate-sin';
+import { validateSIN } from '../utils/validate-sin';
 import { ErrorIcon, LoadingIcon, SuccessIcon } from './icons';
 
 const SINInput: React.FC = () => {
@@ -64,6 +64,7 @@ const SINInput: React.FC = () => {
         Validate
       </button>
       <div
+        role='alert'
         className={`mt-4 text-lg text-center h-6 ${
           isValid ? 'text-green-500' : 'text-red-500'
         }`}

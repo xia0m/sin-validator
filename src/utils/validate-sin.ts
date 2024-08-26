@@ -2,7 +2,7 @@ export const validateSIN = (sin: string): Promise<string> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (sin.length !== 9) {
-        reject('Error! SIN should be 9 digits');
+        reject('Error! SIN should be 9 digits.');
       } else {
         const digits = sin.split('').map((digit, index) => {
           if (index % 2 === 1) {
@@ -18,8 +18,6 @@ export const validateSIN = (sin: string): Promise<string> => {
         });
 
         const sum = digits.reduce((accu, cur) => accu + cur, 0);
-        console.log('digis are ', digits);
-        console.log('sum is ', sum);
 
         if (sum % 10 === 0) {
           resolve('Success! SIN is valid.');
